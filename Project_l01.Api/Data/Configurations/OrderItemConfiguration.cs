@@ -10,42 +10,41 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
     public void Configure(EntityTypeBuilder<OrderItem> builder)
     {
         
-        builder.ToTable("orderItems", table =>
+        builder.ToTable("order_items", table =>
         {
             table.HasCheckConstraint(
                 "CK_order_items_quantity_positive",
-                "\"quantity\" > 0"
+                "\"Quantity\" > 0"
             );
 
             table.HasCheckConstraint(
                 "CK_order_items_unit_price_positive",
-                "\"unit_price\" > 0" 
+                "\"UnitPrice\" > 0" 
             );
 
         });
 
-        builder.HasKey(orderItem => orderItem.Id);
+        builder.HasKey(item => item.Id);
 
-        builder.Property(orderItem => orderItem.Quantity)
+        builder.Property(item => item.Quantity)
             .IsRequired();
 
-        builder.Property(orderItem => orderItem.UnitPrice)
+        builder.Property(item => item.UnitPrice)
             .IsRequired()
             .HasPrecision(18, 2);
 
-        builder.HasOne(orderItem => orderItem.Order)
-            .WithMany()
-            .HasForeignKey(orderItem => orderItem.OrderId)
+        builder.HasOne(item => item.Order)
+            .WithMany(order => order.Items)
+            .HasForeignKey(item => item.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasOne(orderItem => orderItem.Product)
+        builder.HasOne(item => item.Product)
             .WithMany()
-            .HasForeignKey(orderItem => orderItem.ProductId)
+            .HasForeignKey(item => item.ProductId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        builder.HasIndex(item => item.OrderId);
 
-        builder.HasIndex(orderItem => orderItem.OrderId);
-
-        builder.HasIndex(orderItem => orderItem.ProductId);
+        builder.HasIndex(item => item.ProductId);
     }
 }

@@ -15,7 +15,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         {
             table.HasCheckConstraint(
                 "CK_orders_total_non_negative",
-                "\"total\" >= 0"
+                "\"Total\" >= 0"
             ); 
         });
 

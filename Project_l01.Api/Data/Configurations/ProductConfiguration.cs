@@ -12,17 +12,17 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         {
             table.HasCheckConstraint(
                 "CK_products_price_positive",
-                "\"price\" > 0"
+                "\"Price\" > 0"
             );
 
             table.HasCheckConstraint(
                 "CK_products_stock_non_negative",
-                "\"stock_quantity\" > 0"
+                "\"StockQuantity\" > 0"
             );
 
             table.HasCheckConstraint(
                 "Ck_products_minimum_stock_non_negative",
-                "\"minimum_stock\" >= 0"
+                "\"MinimumStock\" >= 0"
             );
   
         });
