@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Project_l01.Api.Data.Seed;
 using Project_l01.Api.Models;
 
 namespace Project_l01.Api.Data.Configurations;
@@ -22,5 +23,6 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 
         builder.Property(category => category.Description)
             .HasMaxLength(500);
+
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Project_l01.Api.Data.Seed;
 using Project_l01.Api.Models;
 
 namespace Project_l01.Api.Data;
@@ -25,5 +26,21 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(
             typeof(ApplicationDbContext).Assembly
         );
+
+        modelBuilder.Entity<Category>()
+            .HasData(CategorySeed.Data);
+
+        modelBuilder.Entity<Product>()
+            .HasData(ProductSeed.Data);
+
+        modelBuilder.Entity<Customer>()
+            .HasData(CustomerSeed.Data);
+
+        modelBuilder.Entity<Order>()
+            .HasData(OrderSeed.Data);
+
+        modelBuilder.Entity<OrderItem>()
+            .HasData(OrderItemSeed.Data);
+
     }
 }
