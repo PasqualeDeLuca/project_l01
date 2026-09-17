@@ -1,0 +1,117 @@
+using Project_l01.Api.DTOs.Products;
+using Project_l01.Api.Models;
+
+namespace Project_l01.Api.Services;
+
+public class ProductService : IProductService
+{
+    
+    private readonly IProductRepository _productRepository;
+
+    public ProductService(IProductRepository productRepository)
+    {
+        _productRepository = productRepository;
+    }
+
+
+    public async Task<IEnumerable<ProductDto>> GetAllAsync()
+    {
+        var products = await _productRepository.GetAllAsync();
+
+        return products.Select(MapToDto);
+    }
+
+    public async Task<ProductDto?> GetByIdAsync(int id)
+    {
+        var product = await _productRepository.GetByIdAsync(id);
+
+        return product is null
+            ? null
+            : MapToDto(product);
+    }
+
+    public async Task<ProductDto> CreateAsync(CreateProductDto dto)
+    {
+        var categoryExist = await _productRepository.CategoryExistAsync(dto.CategoryId);
+
+        if (!categoryExist)
+        {
+            throw new ArgumentException("Category does not exist.");
+        }
+
+        var product = new Product
+        {
+            Sku = dto.Sku,
+            Name = dto.Name,
+            Description = dto.Description,
+            Price = dto.Price,
+            StockQuantity = dto.StockQuantity,
+            MinimumStock = dto.MinimumStock,
+            CategoryId = dto.CategoryId,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        var createdProduct = await _productRepository.AddAsync(product);
+
+        return MapToDto(createdProduct);
+    }
+
+    public async Task<bool> UpdateAsync(int id, UpdateProductDto dto)
+    {
+        var existingProduct = await _productRepository.GetByIdAsync(id);
+
+        if (existingProduct is null)
+        {
+            return false;
+        }
+
+        var categoryExist = await _productRepository.CategoryExistAsync(dto.CategoryId);
+
+        if (!categoryExist)
+        {
+            throw new ArgumentException("Category does not exist.");
+        }
+
+        existingProduct.Sku = dto.Sku;
+        existingProduct.Name = dto.Name;
+        existingProduct.Description = dto.Description;
+        existingProduct.Price = dto.Price;
+        existingProduct.StockQuantity = dto.StockQuantity;
+        existingProduct.MinimumStock = dto.MinimumStock;
+        existingProduct.CategoryId = dto.CategoryId;
+
+        await _productRepository.UpdateAsync(existingProduct);
+
+        return true;
+    }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        var product = await _productRepository.GetByIdAsync(id);
+
+        if(product is null)
+        {
+            return false;
+        }
+
+        await _productRepository.DeleteAsync(product);
+
+        return true;
+    }
+
+    private static ProductDto MapToDto(Product product)
+    {
+        return new ProductDto
+        {
+            Id = product.Id,
+            Sku = product.Sku,
+            Name = product.Name,
+            Description = product.Description,
+            Price = product.Price,
+            StockQuantity = product.StockQuantity,
+            MinimumStock = product.MinimumStock,
+            CategoryId = product.CategoryId,
+            CreatedAt = product.CreatedAt
+        };
+    }
+}
