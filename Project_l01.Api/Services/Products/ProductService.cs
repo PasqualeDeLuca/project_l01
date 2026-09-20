@@ -56,13 +56,13 @@ public class ProductService : IProductService
         return MapToDto(createdProduct);
     }
 
-    public async Task<bool> UpdateAsync(int id, UpdateProductDto dto)
+    public async Task<ProductDto?> UpdateAsync(int id, UpdateProductDto dto)
     {
         var existingProduct = await _productRepository.GetByIdAsync(id);
 
         if (existingProduct is null)
         {
-            return false;
+            return null;
         }
 
         var categoryExist = await _productRepository.CategoryExistAsync(dto.CategoryId);
@@ -82,7 +82,7 @@ public class ProductService : IProductService
 
         await _productRepository.UpdateAsync(existingProduct);
 
-        return true;
+        return MapToDto(existingProduct);
     }
 
     public async Task<bool> DeleteAsync(int id)

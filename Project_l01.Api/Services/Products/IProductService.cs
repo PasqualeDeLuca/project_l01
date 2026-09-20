@@ -9,6 +9,6 @@ public interface IProductService
     Task<IEnumerable<ProductDto>> GetAllAsync();
     Task<ProductDto?> GetByIdAsync(int id);
     Task<ProductDto> CreateAsync(CreateProductDto product);
-    Task<bool> UpdateAsync(int id, UpdateProductDto product);
+    Task<ProductDto?> UpdateAsync(int id, UpdateProductDto product);
     Task<bool> DeleteAsync(int id);
 }

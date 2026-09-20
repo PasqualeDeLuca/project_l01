@@ -1,0 +1,20 @@
+<h1>Product Detail</h1>
+
+@if (isLoading()) {
+  <p>Loading product...</p>
+}
+
+@if (errorMessage()) {
+  <p>{{ errorMessage() }}</p>
+}
+
+@if (product()) {
+  <h2>{{ product()!.name }}</h2>
+
+  <p>SKU: {{ product()!.sku }}</p>
+  <p>Description: {{ product()!.description }}</p>
+  <p>Price: €{{ product()!.price }}</p>
+  <p>Stock: {{ product()!.stockQuantity }}</p>
+  <p>Minimum stock: {{ product()!.minimumStock }}</p>
+  <p>Category ID: {{ product()!.categoryId }}</p>
+}

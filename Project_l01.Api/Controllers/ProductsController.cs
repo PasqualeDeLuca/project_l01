@@ -54,14 +54,14 @@ public class ProductsController : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, UpdateProductDto dto)
     {
-        var updated = await _productService.UpdateAsync(id, dto);
+        var result = await _productService.UpdateAsync(id, dto);
         
-        if (!updated)
+        if (result is null)
         {
             return NotFound();
         }
 
-        return NoContent();
+        return Ok(result);
     }
 
     [HttpDelete("{id:int}")]

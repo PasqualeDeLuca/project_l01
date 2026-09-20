@@ -1,0 +1,58 @@
+<h1>Edit Product</h1>
+
+@if (isLoading()) {
+  <p>Creating product...</p>
+}
+
+@if (errorMessage()) {
+  <p>{{ errorMessage() }}</p>
+}
+
+<form [formGroup]="productForm" (ngSubmit)="updateProduct()">
+  <div>
+    <label for="sku">SKU</label>
+    <input id="sku" type="text" formControlName="sku" />
+  </div>
+
+  <div>
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" />
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description"> </textarea>
+  </div>
+
+  <div>
+    <label for="price">Price</label>
+    <input id="price" type="number" formControlName="price" />
+  </div>
+
+  <div>
+    <label for="stockQuantity">Stock quantity</label>
+    <input id="stockQuantity" type="number" formControlName="stockQuantity" />
+  </div>
+
+  <div>
+    <label for="minimumStock">Minimum stock</label>
+    <input id="minimumStock" type="number" formControlName="minimumStock" />
+  </div>
+
+  <div>
+    <label for="categoryId">Category ID</label>
+    <select id="categoryId" formControlName="categoryId">
+      <option [value]="0">
+        Select a category
+      </option>
+
+      @for (category of categories(); track category.id) {
+        <option [value]="category.id">
+          {{ category.name }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="isLoading()">Update Product</button>
+</form>

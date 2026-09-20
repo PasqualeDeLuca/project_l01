@@ -1,0 +1,81 @@
+<h1>Create Product</h1>
+
+@if (isLoading()) {
+  <p>Creating product...</p>
+}
+
+@if (errorMessage()) {
+  <p>{{ errorMessage() }}</p>
+}
+
+<form [formGroup]="productForm" (ngSubmit)="createProduct()">
+  <div>
+    <label for="sku">SKU</label>
+    <input id="sku" type="text" formControlName="sku" />
+
+    @if (productForm.controls.sku.touched && productForm.controls.sku.invalid) {
+      <p>SKU is required.</p>
+    }
+  </div>
+
+  <div>
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" />
+
+    @if (productForm.controls.name.touched && productForm.controls.name.invalid) {
+      <p>Name is required.</p>
+    }
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description"> </textarea>
+  </div>
+
+  <div>
+    <label for="price">Price</label>
+    <input id="price" type="number" formControlName="price" />
+
+    @if (productForm.controls.price.touched && productForm.controls.price.invalid) {
+      <p>Price must be greater than or equal to 0.</p>
+    }
+  </div>
+
+  <div>
+    <label for="stockQuantity">Stock quantity</label>
+    <input id="stockQuantity" type="number" formControlName="stockQuantity" />
+
+    @if (productForm.controls.stockQuantity.touched && productForm.controls.stockQuantity.invalid) {
+      <p>Stock quantity must be greater than or equal to 0.</p>
+    }
+  </div>
+
+  <div>
+    <label for="minimumStock">Minimum stock</label>
+    <input id="minimumStock" type="number" formControlName="minimumStock" />
+
+    @if (productForm.controls.minimumStock.touched && productForm.controls.minimumStock.invalid) {
+      <p>Minimum stock must be greater than or equal to 0.</p>
+    }
+  </div>
+
+  <div>
+    <label for="categoryId">Category ID</label>
+
+    <select id="categoryId" formControlName="categoryId">
+      <option value="0">Select a category</option>
+
+      @for (category of categories(); track category.id) {
+        <option [value]="category.id">
+          {{ category.name }}
+        </option>
+      }
+    </select>
+
+    @if (productForm.controls.categoryId.touched && productForm.controls.categoryId.invalid) {
+      <p>Category ID is required.</p>
+    }
+  </div>
+
+  <button type="submit" [disabled]="isLoading()">Create Product</button>
+</form>

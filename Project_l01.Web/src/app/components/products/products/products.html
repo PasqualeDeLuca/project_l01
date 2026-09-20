@@ -1,0 +1,35 @@
+<h1>Products</h1>
+
+@if (isLoading()) {
+  <p>Loading products...</p>
+}
+
+@if (errorMessage()) {
+  <p>{{ errorMessage() }}</p>
+}
+
+@for (product of products(); track product.id) {
+  <article>
+    <h2>{{ product.name }}</h2>
+
+    <p>SKU: {{ product.sku }}</p>
+    <p>Price: €{{ product.price }}</p>
+    <p>Stock: {{ product.stockQuantity }}</p>
+
+    <a [routerLink]="['/products', product.id]"> View details </a>
+
+    <a [routerLink]="['/products', product.id, 'edit']"> Edit </a>
+
+    <button
+      type="button"
+      (click)="deleteProduct(product.id)"
+      [disabled]="deletingProductId() === product.id"
+    >
+      @if (deletingProductId() === product.id) {
+        Deleting...
+      } @else {
+        Delete
+      }
+    </button>
+  </article>
+}
