@@ -39,6 +39,38 @@ The main goal is to practice the development of a modern full-stack application 
 
 ---
 
+## 📚 Project Status
+
+🚧 **Work in progress**
+
+The project is being developed following a structured 14-day roadmap.
+
+### Development Progress
+
+- [x] **Day 1 — Analisi e progettazione**
+- [x] **Day 2 — Setup database e Entity Framework Core**
+- [x] **Day 3 — Architettura Backend e API Products/Categories**
+- [x] **Day 4 — Angular: setup e fondamentali**
+- [x] **Day 5 — Angular: Products CRUD**
+  - Visualizzare l'elenco dei prodotti
+  - Visualizzare i dettagli di un prodotto
+  - Creare un nuovo prodotto
+  - Modificare un prodotto esistente
+  - Eliminare un prodotto
+  - Assegnare un prodotto a una categoria
+  - Modificare la categoria di un prodotto
+- [ ] **Day 6 — Backend: Orders**
+- [ ] **Day 7 — Angular: Orders**
+- [ ] **Day 8 — Query, ricerca, filtri e paginazione**
+- [ ] **Day 9 — Dashboard e business logic**
+- [ ] **Day 10 — Customer Management**
+- [ ] **Day 11 — Autenticazione e autorizzazione**
+- [ ] **Day 12 — Validazione, error handling e qualità**
+- [ ] **Day 13 — Testing e rifinitura**
+- [ ] **Day 14 — Docker, documentazione e portfolio**
+
+---
+
 ## 📌 Project Overview
 
 Project_l01 represents a simplified business management application.
@@ -546,36 +578,6 @@ A typical workflow is:
 ```
 
 This approach makes it possible to understand each layer before connecting it to the next one.
-
----
-
-## 📚 Project Status
-
-🚧 **Work in progress**
-
-The project is being developed step by step as part of a learning roadmap.
-
-Planned areas include:
-
-- [x] .NET solution setup
-- [x] ASP.NET Core API setup
-- [x] PostgreSQL with Docker
-- [x] Entity Framework Core configuration
-- [ ] Domain entities
-- [ ] Database relationships
-- [ ] Initial migrations
-- [ ] Seed data
-- [ ] CRUD API endpoints
-- [ ] API validation
-- [ ] Error handling
-- [ ] Angular application
-- [ ] Angular services
-- [ ] Angular forms
-- [ ] Product management UI
-- [ ] Customer management UI
-- [ ] Order management UI
-- [ ] Integration testing
-- [ ] Final documentation
 
 ---
 
