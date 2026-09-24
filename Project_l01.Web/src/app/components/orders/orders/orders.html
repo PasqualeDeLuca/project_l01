@@ -1,0 +1,26 @@
+<h1>Orders</h1>
+
+@if (isLoading()) {
+  <p>Loading orders...</p>
+}
+
+@if (errorMessage()) {
+  <p>{{ errorMessage() }}</p>
+}
+
+@if (!isLoading() && !errorMessage()) {
+  @if (orders().length === 0) {
+    <p>No orders found.</p>
+  }
+
+  @if (orders().length > 0) {
+    <ul>
+      @for (order of orders(); track order.id) {
+        <li>
+          <a [routerLink]="['/orders', order.id]"> Order #{{ order.id }} </a>
+          - Customer: {{ order.customer.firstName }} {{ order.customer.lastName }} - Total: €{{ order.total }}
+        </li>
+      }
+    </ul>
+  }
+}

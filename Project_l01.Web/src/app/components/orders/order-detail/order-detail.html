@@ -1,0 +1,43 @@
+<h1>Order Detail</h1>
+
+@if (isLoading()) {
+  <p>Loading order...</p>
+}
+
+@if (errorMessage()) {
+  <p>{{ errorMessage() }}</p>
+}
+
+@if (order()) {
+  <section>
+    <h2>Order #{{ order()!.id }}</h2>
+    <p>Customer: {{ order()!.customer.firstName }} {{ order()!.customer.lastName }}</p>
+    <p>Status: {{ order()!.status }}</p>
+  </section>
+  <section>
+    <h2>Products</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of order()!.items; track item.productId) {
+          <tr>
+            <td>{{ item.productName }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>€{{ item.unitPrice }}</td>
+            <td>€{{ item.subtotal }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h2>Total: €{{ order()!.total }}</h2>
+  </section>
+}
