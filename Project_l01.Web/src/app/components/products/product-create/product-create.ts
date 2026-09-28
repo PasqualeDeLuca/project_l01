@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ProductService } from '../../../services/product.service';
 
-import { Category } from '../../../models/category.model';
+import { Category } from '../../../models/category/category.model';
 import { CategoryService } from '../../../services/category.service';
 
 @Component({

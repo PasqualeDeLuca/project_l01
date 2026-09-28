@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
 
-import { Category } from '../../../models/category.model';
+import { Category } from '../../../models/category/category.model';
 import { CategoryService } from '../../../services/category.service';
 
 @Component({
@@ -36,20 +36,20 @@ export class ProductEdit implements OnInit {
 
   ngOnInit(): void {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
-    
+
     this.loadCategories();
     this.loadProduct();
   }
 
   private loadCategories(): void {
     this.categoryService.getCategories().subscribe({
-      next: categories => {
+      next: (categories) => {
         this.categories.set(categories);
       },
-      error: error => {
+      error: (error) => {
         console.error('Error loading categories:', error);
-      }
-    })
+      },
+    });
   }
 
   private loadProduct(): void {
