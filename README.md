@@ -41,33 +41,18 @@ The main goal is to practice the development of a modern full-stack application 
 
 ## 📚 Project Status
 
-🚧 **Work in progress**
+The application currently provides a basic full-stack management system for products, categories, customers, and orders.
 
-The project is being developed following a structured 14-day roadmap.
+### Available features
 
-### Development Progress
-
-- [x] **Day 1 — Analisi e progettazione**
-- [x] **Day 2 — Setup database e Entity Framework Core**
-- [x] **Day 3 — Architettura Backend e API Products/Categories**
-- [x] **Day 4 — Angular: setup e fondamentali**
-- [x] **Day 5 — Angular: Products CRUD**
-  - Visualizzare l'elenco dei prodotti
-  - Visualizzare i dettagli di un prodotto
-  - Creare un nuovo prodotto
-  - Modificare un prodotto esistente
-  - Eliminare un prodotto
-  - Assegnare un prodotto a una categoria
-  - Modificare la categoria di un prodotto
-- [ ] **Day 6 — Backend: Orders**
-- [ ] **Day 7 — Angular: Orders**
-- [ ] **Day 8 — Query, ricerca, filtri e paginazione**
-- [ ] **Day 9 — Dashboard e business logic**
-- [ ] **Day 10 — Customer Management**
-- [ ] **Day 11 — Autenticazione e autorizzazione**
-- [ ] **Day 12 — Validazione, error handling e qualità**
-- [ ] **Day 13 — Testing e rifinitura**
-- [ ] **Day 14 — Docker, documentazione e portfolio**
+- **Product management** — Create, view, update, and delete products.
+- **Category management** — Manage product categories with relational constraints.
+- **Order management** — View orders, customers, order items, quantities, prices, and totals.
+- **REST API** — ASP.NET Core API organized into Controllers, Services, Repositories, DTOs, and Entity Framework Core.
+- **Database** — PostgreSQL database running in Docker, with migrations, relational constraints, and seed data.
+- **Angular frontend** — Web interface for browsing products and orders, including product CRUD and order details.
+- **API documentation** — Interactive API testing through OpenAPI and Swagger UI.
+- **SQL** — Direct database inspection and verification through PostgreSQL.
 
 ---
 
