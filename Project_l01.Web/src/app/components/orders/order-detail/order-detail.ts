@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { OrderService } from '../../../services/order.service';
 import { ActivatedRoute } from '@angular/router';
-import { Order } from '../../../models/order.model';
+import { Order } from '../../../models/order/order.model';
 
 @Component({
   selector: 'app-order-detail',
@@ -10,7 +10,6 @@ import { Order } from '../../../models/order.model';
   styleUrl: './order-detail.css',
 })
 export class OrderDetail implements OnInit {
-
   private readonly route = inject(ActivatedRoute);
   private readonly orderService = inject(OrderService);
 
@@ -23,7 +22,6 @@ export class OrderDetail implements OnInit {
   }
 
   loadOrder(): void {
-    
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     if (!id) {
@@ -38,17 +36,14 @@ export class OrderDetail implements OnInit {
       next: (order) => {
         this.order.set(order);
         this.isLoading.set(false);
-      }, 
+      },
       error: (error) => {
         console.error('Error loading order:', error);
 
-        this.errorMessage.set(
-          'Unable to laod the order.'
-        );
+        this.errorMessage.set('Unable to laod the order.');
 
         this.isLoading.set(false);
-      }
-    })
+      },
+    });
   }
-
 }

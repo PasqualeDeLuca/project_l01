@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { OrderService } from '../../../services/order.service';
 
-import { Order } from '../../../models/order.model';
+import { Order } from '../../../models/order/order.model';
 
 @Component({
   selector: 'app-orders',
