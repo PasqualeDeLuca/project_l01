@@ -2,6 +2,7 @@
 
 using Project_l01.Api.Models;
 using Project_l01.Api.Repositories;
+using Project_l01.Api.DTOs.Customers;
 
 namespace Project_l01.Api.Services;
 
@@ -105,7 +106,13 @@ public class OrderService : IOrderService
         return new OrderDto
         {
             Id = order.Id,
-            CustomerId = order.CustomerId,
+            Customer = new CustomerDto
+            {
+                Id = order.Customer.Id,
+                FirstName = order.Customer.FirstName,
+                LastName = order.Customer.LastName,
+                Email = order.Customer.Email
+            },
             Status = order.Status,
             Total = order.Total,
 

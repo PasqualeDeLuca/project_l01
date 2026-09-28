@@ -1,13 +1,19 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using Project_l01.Api.Data;
 using Project_l01.Api.Products;
 using Project_l01.Api.Repositories;
 using Project_l01.Api.Services;
-
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+     {
+         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+     });
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options
